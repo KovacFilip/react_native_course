@@ -60,7 +60,5 @@ const styles = StyleSheet.create({
     },
     goalsContainer: {
         flex: 5,
-        justifyContent: "flex-start",
-        alignItems: "stretch",
     },
 });

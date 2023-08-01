@@ -1,5 +1,13 @@
+import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
-import { Button, Modal, StyleSheet, TextInput, View } from "react-native";
+import {
+    Button,
+    Image,
+    Modal,
+    StyleSheet,
+    TextInput,
+    View,
+} from "react-native";
 
 export const GoalInput = ({ addGoalHandler, visible, hideModal }) => {
     const [enteredGoalText, setEnteredGoalText] = useState("");
@@ -20,24 +28,31 @@ export const GoalInput = ({ addGoalHandler, visible, hideModal }) => {
     };
 
     return (
-        <Modal visible={visible} animationType="slide">
-            <View style={styles.inputContainer}>
-                <TextInput
-                    style={styles.textInput}
-                    placeholder="Your course goal"
-                    onChangeText={goalInputHandler}
-                    value={enteredGoalText}
-                />
-                <View style={styles.buttonContainer}>
-                    <View style={styles.button}>
-                        <Button title="Add goal" onPress={addGoal} />
-                    </View>
-                    <View style={styles.button}>
-                        <Button title="Cancel" onPress={cancelAddGoal} />
+        <>
+            <StatusBar style="light" />
+            <Modal visible={visible} animationType="slide">
+                <View style={styles.inputContainer}>
+                    <Image
+                        source={require("../assets/images/goal.png")}
+                        style={styles.image}
+                    />
+                    <TextInput
+                        style={styles.textInput}
+                        placeholder="Your course goal"
+                        onChangeText={goalInputHandler}
+                        value={enteredGoalText}
+                    />
+                    <View style={styles.buttonContainer}>
+                        <View style={styles.button}>
+                            <Button title="Add goal" onPress={addGoal} />
+                        </View>
+                        <View style={styles.button}>
+                            <Button title="Cancel" onPress={cancelAddGoal} />
+                        </View>
                     </View>
                 </View>
-            </View>
-        </Modal>
+            </Modal>
+        </>
     );
 };
 
@@ -46,14 +61,14 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        marginBottom: 24,
-        borderBottomWidth: 1,
-        borderBottomColor: "#ccc",
         padding: 16,
+        backgroundColor: "#004F95",
     },
     textInput: {
         borderWidth: 1,
         borderColor: "#ccc",
+        backgroundColor: "#ccc",
+        color: "#fff",
         width: "100%",
         marginRight: 8,
         height: 35,
@@ -66,5 +81,10 @@ const styles = StyleSheet.create({
     button: {
         width: 100,
         marginHorizontal: 8,
+    },
+    image: {
+        width: 100,
+        height: 100,
+        margin: 20,
     },
 });
