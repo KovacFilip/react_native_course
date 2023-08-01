@@ -7,7 +7,16 @@ export default function App() {
     const [listOfGoals, setListOfGoals] = useState([]);
 
     const addGoalHandler = (enteredGoalText) => {
-        setListOfGoals((prevState) => [...prevState, enteredGoalText]);
+        setListOfGoals((prevState) => [
+            ...prevState,
+            { text: enteredGoalText, id: Math.random().toString() },
+        ]);
+    };
+
+    const deleteGoalHandler = (index) => {
+        setListOfGoals((prevState) =>
+            prevState.filter((item) => item.id !== index)
+        );
     };
 
     return (
@@ -17,7 +26,11 @@ export default function App() {
                 <FlatList
                     data={listOfGoals}
                     renderItem={(itemData) => (
-                        <GoalItem index={itemData.index} text={itemData.item} />
+                        <GoalItem
+                            onDeleteItem={deleteGoalHandler}
+                            index={itemData.item.id}
+                            text={itemData.item.text}
+                        />
                     )}
                 />
             </View>
